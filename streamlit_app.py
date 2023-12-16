@@ -1,31 +1,21 @@
-# Streamlitライブラリをインポート
+# 必要なライブラリをインポート
 import streamlit as st
 
-# ページ設定（タブに表示されるタイトル、表示幅）
-st.set_page_config(page_title="タイトル", layout="wide")
+# 画面タイトルの設定
+st.title('三角形の面積計算アプリ')
 
-# タイトルを設定
-st.title('Streamlitのサンプルアプリ')
+# 三角形の底辺を入力するテキストボックス
+base = st.text_input('底辺の長さを入力してください', '0')
 
-# テキスト入力ボックスを作成し、ユーザーからの入力を受け取る
-user_input = st.text_input('あなたの名前を入力してください')
+# 三角形の高さを入力するテキストボックス
+height = st.text_input('高さを入力してください', '0')
 
-# ボタンを作成し、クリックされたらメッセージを表示
-if st.button('挨拶する'):
-    if user_input:  # 名前が入力されているかチェック
-        st.success(f'🌟 こんにちは、{user_input}さん! 🌟')  # メッセージをハイライト
-    else:
-        st.error('名前を入力してください。')  # エラーメッセージを表示
+# 入力された値を浮動小数点数に変換
+b = float(base)
+h = float(height)
 
-# スライダーを作成し、値を選択
-number = st.slider('好きな数字（10進数）を選んでください', 0, 100)
+# 三角形の面積を計算
+area = 0.5 * b * h
 
-# 補足メッセージ
-st.caption("十字キー（左右）でも調整できます。")
-
-# 選択した数字を表示
-st.write(f'あなたが選んだ数字は「{number}」です。')
-
-# 選択した数値を2進数に変換
-binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+# 計算結果を表示
+st.write('底辺：', b, '、高さ：', h, 'の三角形の面積は', area, 'です。')
